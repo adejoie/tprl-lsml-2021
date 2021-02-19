@@ -93,7 +93,6 @@ class VideoRecorder(object):
         return self.enabled and not self.broken
 
     def capture_frame(self):
-        print('caca')
         """Render the given `env` and add the resulting frame to the video."""
         if not self.functional: return
         logger.debug('Capturing video frame: path=%s', self.path)
@@ -110,7 +109,6 @@ class VideoRecorder(object):
                 logger.warn('Env returned None on render(). Disabling further rendering for video recorder by marking as disabled: path=%s metadata_path=%s', self.path, self.metadata_path)
                 self.broken = True
         else:
-            print('hola')
             self.last_frame = frame
             if self.ansi_mode:
                 self._encode_ansi_frame(frame)
