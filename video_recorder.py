@@ -93,6 +93,7 @@ class VideoRecorder(object):
         return self.enabled and not self.broken
 
     def capture_frame(self):
+        print('caca')
         """Render the given `env` and add the resulting frame to the video."""
         if not self.functional: return
         logger.debug('Capturing video frame: path=%s', self.path)
