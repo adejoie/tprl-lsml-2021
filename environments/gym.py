@@ -70,6 +70,7 @@ class GymEnvironment(object):
 
     def reset(self, record=False):
         self.record = record
+        print(self.record)
         return self._env.reset()
 
     def step(self, ac):
