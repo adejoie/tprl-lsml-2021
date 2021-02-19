@@ -63,28 +63,27 @@ def plot_data(data, value="AverageReturn"):
 def get_datasets(fpath, condition=None):
     unit = 0
     datasets = []
-    for root, dir, files in os.walk(fpath):
-        if 'log.txt' in files:
-            param_path = open(os.path.join(root,'params.json'))
-            params = json.load(param_path)
-            exp_name = params['exp_name']
-            
-            log_path = os.path.join(root,'log.txt')
-            experiment_data = pd.read_table(log_path)
+    if 'log.txt' in os.listdir(fpath):
+        param_path = open(os.path.join(root,'params.json'))
+        params = json.load(param_path)
+        exp_name = params['exp_name']
+        
+        log_path = os.path.join(root,'log.txt')
+        experiment_data = pd.read_table(log_path)
 
-            experiment_data.insert(
-                len(experiment_data.columns),
-                'Unit',
-                unit
-                )        
-            experiment_data.insert(
-                len(experiment_data.columns),
-                'Condition',
-                condition or exp_name
-                )
+        experiment_data.insert(
+            len(experiment_data.columns),
+            'Unit',
+            unit
+            )        
+        experiment_data.insert(
+            len(experiment_data.columns),
+            'Condition',
+            condition or exp_name
+            )
 
-            datasets.append(experiment_data)
-            unit += 1
+        datasets.append(experiment_data)
+        unit += 1
 
     return datasets
 
