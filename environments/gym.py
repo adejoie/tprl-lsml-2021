@@ -73,6 +73,7 @@ class GymEnvironment(object):
         return self._env.reset()
 
     def step(self, ac):
+        print(self.record)
         if self.record:
             if not self.recording:
                 self.recording = True
