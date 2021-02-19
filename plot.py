@@ -64,11 +64,11 @@ def get_datasets(fpath, condition=None):
     unit = 0
     datasets = []
     if 'log.txt' in os.listdir(fpath):
-        param_path = open(os.path.join(root,'params.json'))
+        param_path = open(os.path.join(fpath,'params.json'))
         params = json.load(param_path)
         exp_name = params['exp_name']
         
-        log_path = os.path.join(root,'log.txt')
+        log_path = os.path.join(fpath,'log.txt')
         experiment_data = pd.read_table(log_path)
 
         experiment_data.insert(
