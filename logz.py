@@ -84,20 +84,23 @@ def dump_tabular(verbose=True):
     """
     Write all of the diagnostics from the current iteration
     """
+    
+    vals = []
+    key_lens = [len(key) for key in G.log_headers]
+    max_key_len = max(15,max(key_lens))
+    keystr = '%'+'%d'%max_key_len
+    fmt = "| " + keystr + "s | %15s |"
+    n_slashes = 22 + max_key_len
     if verbose:
-        vals = []
-        key_lens = [len(key) for key in G.log_headers]
-        max_key_len = max(15,max(key_lens))
-        keystr = '%'+'%d'%max_key_len
-        fmt = "| " + keystr + "s | %15s |"
-        n_slashes = 22 + max_key_len
         print("-"*n_slashes)
-        for key in G.log_headers:
-            val = G.log_current_row.get(key, "")
-            if hasattr(val, "__float__"): valstr = "%8.3g"%val
-            else: valstr = val
+    for key in G.log_headers:
+        val = G.log_current_row.get(key, "")
+        if hasattr(val, "__float__"): valstr = "%8.3g"%val
+        else: valstr = val
+        if verbose:
             print(fmt%(key, valstr))
-            vals.append(val)
+        vals.append(val)
+    if verbose:
         print("-"*n_slashes)
     if G.output_file is not None:
         if G.first_row:
