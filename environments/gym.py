@@ -1,6 +1,7 @@
 import gym
 import pybullet_envs
-from gym.wrappers.monitoring import video_recorder
+# from gym.wrappers.monitoring import video_recorder
+from environments import video_recorder
 import torch
 import numpy as np
 
@@ -69,13 +70,10 @@ class GymEnvironment(object):
         return self._env.observation_space
 
     def reset(self, record=False):
-        print(record)
         self.record = record
-        print(self.record)
         return self._env.reset()
 
     def step(self, ac):
-        # print(self.record)
         if self.record:
             if not self.recording:
                 self.recording = True
