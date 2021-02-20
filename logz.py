@@ -64,8 +64,8 @@ def configure_output_dir(d=None):
     atexit.register(G.output_file.close)
     print(colorize("Logging data to %s"%G.output_file.name, 'green', bold=True))
     G.first_row = True
-    log_headers = []
-    log_current_row = {}
+    G.log_headers = []
+    G.log_current_row = {}
 
 def log_tabular(key, val):
     """
