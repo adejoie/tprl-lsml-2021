@@ -108,7 +108,7 @@ class GymEnvironment(object):
             return np.squeeze(ac.cpu().detach().numpy(), 0)
 
     def duplicate(self, n):
-        return [GymEnvironment(self._short_name, device=self.device) for _ in range(n)]
+        return [GymEnvironment(self._short_name) for _ in range(n)]
 
     def setup_recording(self, name):
         self.video_name = name
