@@ -53,6 +53,7 @@ class OffPolicyAgent(Agent):
             'MeanReward': mean_episode_reward,
             'BestMeanReward': self._best_mean_episode_reward,
             'Episodes': len(self._episode_returns),
+            'Exploration': self.exploration.value(self._frame),
         }
         return stats
 
