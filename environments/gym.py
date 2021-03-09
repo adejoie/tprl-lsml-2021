@@ -19,7 +19,7 @@ continuous_envs = {
     'walker':           'Walker2DBulletEnv-v0',
     'ant':              'AntBulletEnv-v0',
     'reacher':          'ReacherBulletEnv-v0',
-    'pendulum':         'InvertedPendulumBulletEnv-v0',
+    'inverted-pendulum':         'InvertedPendulumBulletEnv-v0',
     'double-pendulum':  'InvertedDoublePendulumBulletEnv-v0',
 }
 bullet_envs = {
@@ -28,7 +28,7 @@ bullet_envs = {
     'walker',
     'ant',
     'reacher',
-    'pendulum',
+    'inverted-pendulum',
     'doublependulum',
 }
 
