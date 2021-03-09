@@ -1,4 +1,5 @@
 import time
+from environments.gym import VideoRecorderWrapper
 
 
 class Agent(object):
@@ -7,7 +8,7 @@ class Agent(object):
         env,
     ):
         self.env = env
-        self.eval_env = env.duplicate(1)[0]
+        self.eval_env = VideoRecorderWrapper(env.duplicate(1)[0])
 
     def update(self):
         pass
@@ -15,40 +16,29 @@ class Agent(object):
     def act(self, ob, eval=False):
         pass
 
-    def get_episode_lengths(self):
-        pass
-
-    def get_episode_returns(self):
-        pass
-
     def log_progress(self):
         pass
 
-    def collect_rollouts(self, itr, render=False, bullet=False):
-        pass
-
-    def save(self, dir, itr):
+    def collect_rollouts(self, itr, render=False):
         pass
 
     def eval(self, num_episodes=1, render=False):
         returns = []
         lengths = []
         for _ in range(num_episodes):
-            episode_rewards = self._run_test_episode(render)
+            episode_rewards = self._run_eval_episode(render)
             returns.append(sum(episode_rewards))
             lengths.append(len(episode_rewards))
-        if render and not self.eval_env.is_bullet:
+        if render:
             self.eval_env.close()
         return returns, lengths
 
-    def _run_test_episode(self, render):
-        if render and self.eval_env.is_bullet:
-            self.eval_env.render(mode="human", close=False)
+    def _run_eval_episode(self, render):
         ob = self.eval_env.reset(record=render)
         returns = []
         done = False
         while not done:
-            if render and not self.eval_env.is_bullet:
+            if render:
                 self.eval_env.render()
                 # time.sleep(0.1)
             ac = self.act(ob, eval=True)
