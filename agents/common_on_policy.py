@@ -20,7 +20,7 @@ class OnPolicyAgent(Agent):
         self.device = device
         self.render_interval = render_interval
         self.batch_size = batch_size
-        self.max_path_frames = max_path_frames
+        self.max_path_frames = min(max_path_frames, env.max_episode_steps - 1)
 
         # buffer
         self.buffer = OnPolicyBuffer(device)      

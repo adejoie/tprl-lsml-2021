@@ -22,7 +22,7 @@ class OffPolicyAgent(Agent):
         self.batch_size = batch_size
         self.learning_starts = learning_starts
         self.learning_freq = learning_freq
-        self.max_path_frames = max_path_frames
+        self.max_path_frames = min(max_path_frames, env.max_episode_steps - 1)
 
         # replay buffer
         self.replay_buffer = ReplayBuffer(device, replay_buffer_size)
