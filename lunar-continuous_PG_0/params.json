@@ -4,7 +4,6 @@
 "max_path_frames"	:	1000,
 "nn_baseline"	:	false,
 "normalize_advantages"	:	true,
-"pg_steps"	:	1,
 "policy_hidden"	:	[64,
 64],
 "policy_lr"	:	0.005,
